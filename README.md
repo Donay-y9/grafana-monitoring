@@ -1,12 +1,22 @@
-SOC-Home-Lab
 # SOC-Home-Lab
 
-SOC Level 1 home lab focused on authentication monitoring, host hardening and basic incident detection.
+SOC Level 1 home lab focused on host hardening and authentication monitoring.
+
+This project simulates part of the daily workflow of a junior SOC analyst:
+detection of suspicious authentication activity, basic triage, correlation with host defenses, and documentation of findings.
 
 ## Objective
-Detect and analyze SSH authentication anomalies using Ubuntu Server, Fail2Ban, UFW, Grafana and Loki.
+
+Build a practical lab to:
+
+- Harden an Ubuntu Server
+- Detect SSH brute-force and authentication anomalies
+- Visualize security events with Grafana + Loki
+- Correlate detections with Fail2Ban containment
+- Document analysis in an incident-style format
 
 ## Tech Stack
+
 - Ubuntu Server
 - UFW
 - Fail2Ban
@@ -14,11 +24,15 @@ Detect and analyze SSH authentication anomalies using Ubuntu Server, Fail2Ban, U
 - Loki
 - Promtail
 
-## Repository Structure
-- `screenshots/` dashboard and evidence captures
-- `analysis/` incident-style analysis cases
-- `scripts/` helper scripts for log review
-- `configs/` hardening notes
+## Architecture
 
-## Status
-In progress
+```text
+Windows Host
+    |
+    | SSH failed/successful attempts
+    v
+Ubuntu Server
+    |-- UFW (firewall)
+    |-- Fail2Ban (auto-ban)
+    |-- auth.log
+    |-- Promtail  -->  Loki  -->  Grafana Dashboard
